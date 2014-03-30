@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace os.RealMachine
 {
+    enum Mode
+    {
+        USER,
+        SUPERVISOR
+    }  
+
     class CPU
     {
         private int AX { get; set; }
@@ -33,7 +39,7 @@ namespace os.RealMachine
         private int IC { get; set; }
 
         /* is user mode */
-        private bool MODE { get; set; }
+        private Mode MODE { get; set; }
 
 
         /* channel state [i] */

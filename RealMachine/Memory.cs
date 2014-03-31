@@ -12,7 +12,7 @@ namespace os.RealMachine
     {
         const UInt16 MEMORY_SIZE_BLOCK  = 256;
         const byte   MEMORY_SIZE_WORD   = 16;
-        public static const byte SIZE_WORD = 4;
+        public const byte SIZE_WORD = 4;
         const char EMPTY_WORD_SYMBOL    = '$';
 
         private Mode MODE;

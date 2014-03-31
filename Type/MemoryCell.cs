@@ -13,8 +13,8 @@ namespace os.Type
         /// Memory cell value
         /// </summary>
         public string Value 
-        { 
-            get;
+        {
+            get { return Value;}
             set { this.Value = value.Length < Memory.SIZE_WORD ? value : value.Remove(4); } 
         }
 

@@ -12,12 +12,12 @@ namespace os.RealMachine
     {
         const UInt16 MEMORY_SIZE_BLOCK  = 256;
         const byte   MEMORY_SIZE_WORD   = 16;
-        const byte   SIZE_WORD          = 4;
+        public static const byte SIZE_WORD = 4;
         const char EMPTY_WORD_SYMBOL    = '$';
 
         private Mode MODE;
 
-        private string[] _memory = new string[MEMORY_SIZE_BLOCK * MEMORY_SIZE_WORD];
+        private MemoryCell[] _memory = new MemoryCell[MEMORY_SIZE_BLOCK * MEMORY_SIZE_WORD];
 
         /// <summary>
         /// Empty constructor. Doesn't do a shit.
@@ -40,18 +40,15 @@ namespace os.RealMachine
         /// Puts one word into first free cell
         /// </summary>
         /// <param name="data">data</param>
-        public void Set(object data)
+        public void Set(MemoryCell data)
         {
-            if (isDataValid(data))
-            {
-                foreach (var word in _memory)
+            for (int i = 0; i < _memory.Length; i++)
+			{
+                if (String.IsNullOrEmpty(_memory[i].Value))
                 {
-                    if (String.IsNullOrEmpty(word))
-                    {
-                        Set(data, new Address(word));
-                    }
+                    Set(data, new Address(i));
                 }
-            }
+			}
         }
 
         
@@ -60,12 +57,9 @@ namespace os.RealMachine
         /// </summary>
         /// <param name="data">data</param>
         /// <param name="address">address</param>
-        public void Set(object data, Address address)
+        public void Set(MemoryCell data, Address address)
         {
-            if (isDataValid(data))
-            {
-                _memory[address.FullAddress] = data.ToString();
-            }
+            _memory[address.FullAddress] = data;
         }
 
         /// <summary>
@@ -78,17 +72,21 @@ namespace os.RealMachine
             return _memory[address.FullAddress];
         }
 
-        public void SetBlock(object[] data, Address address)
+        public void SetBlock(MemoryCell[] data, Address address)
         {
             for (byte key = 0; key < MEMORY_SIZE_WORD; key++)
             {
-                if (isDataValid(data[key], throwException: false))
+                if (!String.IsNullOrEmpty(data[key].Value) && data[key].Reserved == false)
                 {
-                    Set(data, new Address(address.Block, key));
+                    Set(data[key], new Address(address.Block, key));
                 }
                 else
                 {
-                    Set(EMPTY_WORD_SYMBOL, new Address(address.Block, key));
+                    Set(new MemoryCell() 
+                            {   
+                                Value = EMPTY_WORD_SYMBOL.ToString(), 
+                                Reserved = false 
+                            }, new Address(address.Block, key));
                 }
             }                           
         }
@@ -107,33 +105,6 @@ namespace os.RealMachine
             }
 
             return data;
-        }
-
-        /// <summary>
-        /// Checks if given data is valid - data size is no more then SIZE_WORD
-        /// </summary>
-        /// <param name="data"></param>
-        /// <param name="throwException"></param>
-        /// <returns></returns>
-        private bool isDataValid(object data, bool throwException = false)
-        {
-            try
-            {
-                if (data.ToString().Length > SIZE_WORD)
-                {
-                    return true;
-                }
-                else if (throwException)
-                {
-                    throw new NotValidDataException(string.Format("Given data length is to long. It should be {0} bytes.", SIZE_WORD));
-                }
-            }
-            catch (System.Exception)
-            {
-                throw;
-            }
-
-            return false;
         }
     }
 }

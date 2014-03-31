@@ -49,6 +49,7 @@
     <Compile Include="RealMachine\Memory.cs" />
     <Compile Include="RealMachine\PageTableTranslator.cs" />
     <Compile Include="Type\Address.cs" />
+    <Compile Include="Type\MemoryCell.cs" />
     <Compile Include="VirtualMachine\IInterpreter.cs" />
     <Compile Include="VirtualMachine\Interpreter.cs" />
     <Compile Include="VirtualMachine\VirtualCPU.cs" />

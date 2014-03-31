@@ -12,10 +12,13 @@ namespace os.VirtualMachine
 
         protected VirtualMemory virtualMemory;
 
+        protected Interpreter interpreter;
+
         public VirtualMachine()
         {
             virtualCPU = new VirtualCPU();
             virtualMemory = new VirtualMemory();
+            interpreter = new Interpreter();
         }
     }
 }

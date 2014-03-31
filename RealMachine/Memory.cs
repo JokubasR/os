@@ -19,9 +19,39 @@ namespace os.RealMachine
 
         private string[] _memory = new string[MEMORY_SIZE_BLOCK * MEMORY_SIZE_WORD];
 
+        /// <summary>
+        /// Empty constructor. Doesn't do a shit.
+        /// </summary>
+        public Memory()
+        {
+
+        }
+
+        /// <summary>
+        /// Initializes memory
+        /// </summary>
+        /// <param name="mode"></param>
         public Memory(Mode mode)
         {
             this.MODE = mode;
+        }
+
+        /// <summary>
+        /// Puts one word into first free cell
+        /// </summary>
+        /// <param name="data">data</param>
+        public void Set(object data)
+        {
+            if (isDataValid(data))
+            {
+                foreach (var word in _memory)
+                {
+                    if (String.IsNullOrEmpty(word))
+                    {
+                        Set(data, new Address(word));
+                    }
+                }
+            }
         }
 
         
@@ -79,6 +109,12 @@ namespace os.RealMachine
             return data;
         }
 
+        /// <summary>
+        /// Checks if given data is valid - data size is no more then SIZE_WORD
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="throwException"></param>
+        /// <returns></returns>
         private bool isDataValid(object data, bool throwException = false)
         {
             try

@@ -59,6 +59,12 @@ namespace os.RealMachine
         /* put data */
         private int SD { get; set; }
 
+        public CPU()
+        { }
 
+        public void DecodeStream(string stream)
+        {
+
+        }
     }
 }

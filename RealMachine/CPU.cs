@@ -17,50 +17,75 @@ namespace os.RealMachine
         private int AX { get; set; }
         private int BX { get; set; }
 
-        /* program counter */
+        /// <summary>
+        /// Program counter
+        /// </summary>
         private int PC { get; set; }
 
-        /* compare result */
+        /// <summary>
+        /// compare result
+        /// </summary>
         private byte SF { get; set; }
 
-        /* programic interupt */
+        /// <summary>
+        /// programic interupt
+        /// </summary>
         private bool PI  { get; set; }
 
-        /* supervisor interupt */
+        /// <summary>
+        /// supervisor interupt
+        /// </summary>
         private bool SI  { get; set; }
 
-        /* input / output interupt */
+        /// <summary>
+        /// input / output interupt
+        /// </summary>
         private bool IOI  { get; set; }
 
-        /* timer interupt */
+        /// <summary>
+        /// timer interupt
+        /// </summary>
         private bool TI  { get; set; }
 
-        /* instruction count */
+        /// <summary>
+        /// instruction count
+        /// </summary>
         private int IC { get; set; }
 
-        /* is user mode */
+        /// <summary>
+        /// is user mode
+        /// </summary>
         private Mode MODE { get; set; }
-
 
         /* channel state [i] */
          private bool CHST1 { get; set; } 
          private bool CHST2 { get; set; }
          private bool CHST3 { get; set; }
 
-        /* code segment start */
+        /// <summary>
+         /// code segment start
+        /// </summary>
         private int CS { get; set; }     
 
-        /* data segment start */
+        /// <summary>
+        /// data segment start
+        /// </summary>
         private int DS { get; set; }
 
-        /* get data */
+        /// <summary>
+        /// get data (for real?)
+        /// </summary>
         private int GD { get; set; }
 
-        /* put data */
+        /// <summary>
+        /// put data (for real?)
+        /// </summary>
         private int SD { get; set; }
 
         public CPU()
-        { }
+        {
+            
+        }
 
         public void DecodeStream(string stream)
         {

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace os.Exception
 {
+    [Serializable]
     class BadAddressException : System.Exception
     {
         public BadAddressException()

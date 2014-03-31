@@ -48,6 +48,8 @@
     <Compile Include="RealMachine\CPU.cs" />
     <Compile Include="RealMachine\Memory.cs" />
     <Compile Include="Type\Address.cs" />
+    <Compile Include="VirtualMachine\VirtualCPU.cs" />
+    <Compile Include="VirtualMachine\VirtualMemory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

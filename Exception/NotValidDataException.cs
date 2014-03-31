@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace os.Exception
 {
+    [Serializable]
     class NotValidDataException : System.Exception
     {
         public NotValidDataException()

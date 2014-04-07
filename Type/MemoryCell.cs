@@ -9,13 +9,21 @@ namespace os.Type
 {
     struct MemoryCell
     {
+        private string value;
+
         /// <summary>
         /// Memory cell value
         /// </summary>
         public string Value 
         {
-            get { return Value;}
-            set { this.Value = value.Length < Memory.SIZE_WORD ? value : value.Remove(4); } 
+            get { return value; }
+            set
+            {
+                if (value.Length < AbstractMemory.SIZE_WORD)
+                    this.value = value;
+                else
+                    this.value = value.Remove(4);
+            } 
         }
 
         /// <summary>

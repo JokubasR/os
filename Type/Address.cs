@@ -9,7 +9,7 @@ namespace os.Type
 {
     class Address
     {
-        const byte NUMERAL_SYSTEM = 10;
+        const byte NUMERAL_SYSTEM = 16;
         const byte ADDRESS_LENGTH = 4;
         private byte block;
 
@@ -44,8 +44,8 @@ namespace os.Type
         /// <param name="_word"></param>
         public Address(byte _block, byte _word)
         {
-            if (_block < (NUMERAL_SYSTEM ^ 2)
-                && _word < (NUMERAL_SYSTEM ^2))
+            if (_block < (Math.Pow(NUMERAL_SYSTEM, 2))
+                && _word < (Math.Pow(NUMERAL_SYSTEM, 2)))
             {
                 block = _block;
                 word = _word;
@@ -61,7 +61,7 @@ namespace os.Type
         /// </summary>
         public int FullAddress
         {
-            get { return block * (NUMERAL_SYSTEM^2) + word; }
+            get { return block * NUMERAL_SYSTEM + word; }
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace os.Type
         /// </summary>
         public int BlockStartAddress
         {
-            get { return block * (NUMERAL_SYSTEM ^ 2); }
+            get { return block * ((int)Math.Pow(NUMERAL_SYSTEM, 2)); }
         }
 
         /// <summary>

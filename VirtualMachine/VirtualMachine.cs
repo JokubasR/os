@@ -8,17 +8,17 @@ namespace os.VirtualMachine
 {
     class VirtualMachine
     {
-        protected VirtualCPU virtualCPU;
+        public VirtualCPU CPU { get; set; }
 
-        protected VirtualMemory virtualMemory;
+        public VirtualMemory Memory { get; set; }
 
-        protected Interpreter interpreter;
+        protected Interpreter Interpreter { get; set; }
 
         public VirtualMachine()
         {
-            virtualCPU = new VirtualCPU();
-            virtualMemory = new VirtualMemory();
-            interpreter = new Interpreter();
+            CPU = new VirtualCPU();
+            Memory = new VirtualMemory();
+            Interpreter = new Interpreter();
         }
     }
 }

@@ -48,6 +48,7 @@
     <Compile Include="RealMachine\CPU.cs" />
     <Compile Include="RealMachine\Memory.cs" />
     <Compile Include="RealMachine\PageTableTranslator.cs" />
+    <Compile Include="Type\AbstractMemory.cs" />
     <Compile Include="Type\Address.cs" />
     <Compile Include="Type\MemoryCell.cs" />
     <Compile Include="VirtualMachine\IInterpreter.cs" />
@@ -58,6 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app1" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

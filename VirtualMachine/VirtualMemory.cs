@@ -1,4 +1,5 @@
-﻿using System;
+﻿using os.Type;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace os.VirtualMachine
 {
-    class VirtualMemory
+    class VirtualMemory : AbstractMemory
     {
-        //TODO maybe there is no need to have a virtualMemory class. Maybe a RealMachine/Memory will be enough
+        public VirtualMemory()
+            : base()
+        {
+            _memory = new MemoryCell[(int)Math.Pow(MEMORY_SIZE_WORD, 2)];
+        }
     }
 }

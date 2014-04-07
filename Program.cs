@@ -1,4 +1,5 @@
 ﻿using os.RealMachine;
+using os.Type;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,10 +25,31 @@ namespace os
              * Nu vo, dabar reik kazkaip nuskaityt tipo sita faila. Sukelt ji VM atminti.
              */
 
-            StreamReader streamReader = new StreamReader(program);
-            string fileContent = streamReader.ReadToEnd();
+            StreamReader streamReader = new StreamReader(@"../../" + program);
+            List<MemoryCell> memoryCells;
+            byte block = 0;
+            while (!streamReader.EndOfStream)
+            {
+                string currentBlock = streamReader.ReadLine();
+                memoryCells = new List<MemoryCell>();
+                foreach (char chunk in currentBlock.ToCharArray())
+                {
+                    memoryCells.Add(new MemoryCell()
+                    {
+                        Value = chunk.ToString(),
+                        Reserved = true
+                    });
+                }
 
+                virtualMachine.Memory.SetBlock(memoryCells, new Address(block++, 0));
+                Console.WriteLine(currentBlock);
+            }
 
+            Console.WriteLine("Program written to VM memory successfully");
+
+            virtualMachine.Memory.DebugMemory();
+
+            Console.ReadLine();
         }
     }
 }

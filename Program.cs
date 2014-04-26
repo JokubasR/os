@@ -17,13 +17,8 @@ namespace os
             CPU cpu = new CPU();
             VM.VirtualMachine virtualMachine = new VM.VirtualMachine();
 
-            Console.WriteLine("Hello, my darling. Please, enter something:");
-            string program = Console.ReadLine();
-            Console.WriteLine("Oh you naughty boy, oh you!");
-
-            /*
-             * Nu vo, dabar reik kazkaip nuskaityt tipo sita faila. Sukelt ji VM atminti.
-             */
+            Console.WriteLine("Hello, please, enter something:");
+            string program = Console.ReadLine();            
 
             StreamReader streamReader = new StreamReader(@"../../" + program);
             List<MemoryCell> memoryCells;
@@ -42,7 +37,6 @@ namespace os
                 }
 
                 virtualMachine.Memory.SetBlock(memoryCells, new Address(block++, 0));
-                Console.WriteLine(currentBlock);
             }
 
             Console.WriteLine("Program written to VM memory successfully");

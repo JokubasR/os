@@ -14,7 +14,6 @@ namespace os
     {
         static void Main(string[] args)
         {
-            CPU cpu = new CPU();
             VM.VirtualMachine virtualMachine = new VM.VirtualMachine();
 
             Console.WriteLine("Hello, please, enter something:");
@@ -38,7 +37,7 @@ namespace os
 
                 virtualMachine.Memory.SetBlock(memoryCells, new Address(block++, 0));
             }
-
+            Console.WriteLine(block);
             Console.WriteLine("Program written to VM memory successfully");
 
             virtualMachine.Memory.DebugMemory();

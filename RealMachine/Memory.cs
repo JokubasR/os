@@ -10,6 +10,8 @@ namespace os.RealMachine
 {
     class Memory : AbstractMemory
     {
+        public static char[][] memoryTable = new char[256][];
+
         public Memory() 
             : base()
         {

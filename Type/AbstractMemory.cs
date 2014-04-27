@@ -12,7 +12,7 @@ namespace os.Type
         protected const UInt16 MEMORY_SIZE_BLOCK = 256;
         public const byte MEMORY_SIZE_WORD = 16;
         public const byte SIZE_WORD = 4;
-        protected const char EMPTY_WORD_SYMBOL = '$';
+        protected const string EMPTY_WORD_SYMBOL = "$$$$";
 
         protected MemoryCell[] _memory;
 
@@ -81,7 +81,7 @@ namespace os.Type
                 {
                     Set(new MemoryCell()
                     {
-                        Value = EMPTY_WORD_SYMBOL.ToString(),
+                        Value = EMPTY_WORD_SYMBOL,
                         Reserved = false
                     }, new Address(address.Block, key));
                 }
@@ -109,12 +109,13 @@ namespace os.Type
             Console.ForegroundColor = ConsoleColor.Black;
             byte word = 0;
             foreach (var chunk in _memory)
-            {               
+            {
                 Console.BackgroundColor = chunk.Reserved == true
                     ? ConsoleColor.Red 
                     : ConsoleColor.Green;
                 Console.Write(chunk.Value);
-
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.Write(' ');
                 if (++word >= MEMORY_SIZE_WORD)
                 {
                     Console.WriteLine();

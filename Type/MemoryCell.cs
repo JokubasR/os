@@ -19,7 +19,7 @@ namespace os.Type
             get { return value; }
             set
             {
-                if (value.Length < AbstractMemory.SIZE_WORD)
+                if (value.Length <= AbstractMemory.SIZE_WORD)
                     this.value = value;
                 else
                     this.value = value.Remove(4);

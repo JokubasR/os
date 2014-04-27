@@ -22,22 +22,32 @@ namespace os
             StreamReader streamReader = new StreamReader(@"../../" + program);
             List<MemoryCell> memoryCells;
             byte block = 0;
+            string word = null;
             while (!streamReader.EndOfStream)
             {
                 string currentBlock = streamReader.ReadLine();
                 memoryCells = new List<MemoryCell>();
+                int last = currentBlock.Length;
+                int iterations = 1;
                 foreach (char chunk in currentBlock.ToCharArray())
-                {
-                    memoryCells.Add(new MemoryCell()
                     {
-                        Value = chunk.ToString(),
-                        Reserved = true
-                    });
-                }
+
+                        word += chunk.ToString();
+                        if ((word.Length == VM.VirtualMemory.SIZE_WORD) || (iterations == last))
+                        {
+                            memoryCells.Add(new MemoryCell()
+                            {
+                                Value = word,
+                                Reserved = true
+                            });
+                            word = null;
+                        }
+                        iterations++;
+                    }
 
                 virtualMachine.Memory.SetBlock(memoryCells, new Address(block++, 0));
             }
-            Console.WriteLine(block);
+
             Console.WriteLine("Program written to VM memory successfully");
 
             virtualMachine.Memory.DebugMemory();

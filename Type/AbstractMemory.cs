@@ -9,7 +9,7 @@ namespace os.Type
 {
     abstract class AbstractMemory
     {
-        protected const UInt16 MEMORY_SIZE_BLOCK = 256;
+        public const UInt16 MEMORY_SIZE_BLOCK = 256;
         public const byte MEMORY_SIZE_WORD = 16;
         public const byte SIZE_WORD = 4;
         protected const string EMPTY_WORD_SYMBOL = "$$$$";

@@ -20,7 +20,18 @@ namespace os.Type
             set
             {
                 if (value.Length <= AbstractMemory.SIZE_WORD)
-                    this.value = value;
+                {
+                    if (value.Length == AbstractMemory.SIZE_WORD)
+                        this.value = value;
+                    else
+                    {
+                        this.value = value;
+                        for (int i = value.Length; i < 4; i++)
+                        {
+                            this.value += '$';
+                        }
+                    }
+                }
                 else
                     this.value = value.Remove(4);
             } 

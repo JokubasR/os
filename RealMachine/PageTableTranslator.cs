@@ -8,34 +8,34 @@ namespace os.RealMachine
 {
     class PageTableTranslator
     {
-        public void setBlock(int number, char[][] data)
+        public void setBlock(int number, string[] data)
         {
             int from = number * 16;
             int to = from + 16;
             int i = 0;
             for (int j = from; j <= to && i < data.Length; j++)
             {
-                os.RealMachine.Memory.memoryTable[j] = data[i];
+                os.RealMachine.Memory.memoryTable[j].Value = data[i];
                 i++;
             }
         }
 
-        public static char[][] getBlock(int number){
-            char[][] block = new char[16][];        
+        public static os.Type.MemoryCell[] getBlock(int number){
+            os.Type.MemoryCell[] blocks = new os.Type.MemoryCell[os.RealMachine.Memory.MEMORY_SIZE_BLOCK];        
             int from = number*16;
             int to = from + 16;
-            block = os.RealMachine.Memory.memoryTable.Skip(from).Take(from - to).ToArray();
-            return block;
+            blocks = os.RealMachine.Memory.memoryTable.Skip(from).Take(from - to).ToArray();
+            return blocks;
         }
 
-        public static char[] getWord(int block_nr, int word_nr)
+        public static os.Type.MemoryCell getWord(int block_nr, int word_nr)
         {
             return os.RealMachine.Memory.memoryTable[block_nr * 16 + word_nr];
         }
 
-        public static void setWord(int block_nr, int word_nr, char[] data)
+        public static void setWord(int block_nr, int word_nr, string data)
         {
-            os.RealMachine.Memory.memoryTable[block_nr * 16 + word_nr] = data;
+            os.RealMachine.Memory.memoryTable[block_nr * 16 + word_nr].Value = data;
         }
 
 

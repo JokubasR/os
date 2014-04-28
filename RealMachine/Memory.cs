@@ -10,7 +10,7 @@ namespace os.RealMachine
 {
     class Memory : AbstractMemory
     {
-        public static char[][] memoryTable = new char[256][];
+        public static os.Type.MemoryCell[] memoryTable = new os.Type.MemoryCell[os.RealMachine.Memory.MEMORY_SIZE_BLOCK];
 
         public Memory() 
             : base()
